@@ -1,0 +1,256 @@
+
+/* Shared footer support (token/layout fallbacks) */
+.container { width: min(100% - 2.5rem, var(--max, 1240px)); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.topo { background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 60c20-30 40-30 60 0s40 30 60 0' fill='none' stroke='%23899B81' stroke-opacity='0.18' stroke-width='1'/%3E%3C/svg%3E"); }
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+.logo-mark { width: 1.55rem; height: 1.55rem; border-radius: 50%; background: conic-gradient(from 210deg, var(--orange), var(--sage, #899B81), var(--forest), var(--orange)); position: relative; display: inline-block; }
+.logo-mark::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--cream, #F5F1E8); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.95rem 1.45rem; border-radius: var(--radius-sm, 4px); border: 1.5px solid transparent; font-weight: 600; font-size: 0.92rem; cursor: pointer; font-family: inherit; text-decoration: none; }
+.btn-primary { background: var(--orange); color: #fff; }
+
+/* FOOTER — cycle theme + moving SVG */
+    .site-footer {
+      position: relative;
+      z-index: 6;
+      background:
+        linear-gradient(180deg, rgba(15,41,32,0.2) 0%, transparent 28%),
+        var(--forest-deep);
+      color: rgba(245,241,232,0.75);
+      padding: 0 0 2rem;
+      overflow: hidden;
+    }
+    .footer-ride {
+      position: relative;
+      width: 100%;
+      height: clamp(7.5rem, 16vw, 10.5rem);
+      margin-bottom: 0.5rem;
+      pointer-events: none;
+    }
+    .footer-ride svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .footer-ride .fr-sky {
+      fill: url(#frSky);
+    }
+    .footer-ride .fr-hill-back {
+      fill: rgba(23, 61, 48, 0.55);
+    }
+    .footer-ride .fr-hill-front {
+      fill: rgba(15, 41, 32, 0.92);
+    }
+    .footer-ride .fr-route {
+      fill: none;
+      stroke: rgba(217, 196, 160, 0.35);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    .footer-ride .fr-route-live {
+      fill: none;
+      stroke: var(--orange);
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-dasharray: 10 14;
+      animation: frRouteDash 1.1s linear infinite;
+    }
+    .footer-ride .fr-bike {
+      color: var(--orange);
+    }
+    .footer-ride .fr-bike .bike-frame {
+      fill: none;
+      stroke: var(--cream);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-ride .fr-bike .bike-stroke {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-ride .fr-bike .bike-hub {
+      fill: currentColor;
+    }
+    .footer-ride .fr-wheel-spin {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: frWheelSpin 0.55s linear infinite;
+    }
+    .footer-ride .fr-mile {
+      fill: rgba(245,241,232,0.45);
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    @keyframes frRouteDash {
+      to { stroke-dashoffset: -48; }
+    }
+    @keyframes frWheelSpin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes frSprocket {
+      to { transform: rotate(360deg); }
+    }
+    .footer-body {
+      position: relative;
+      padding-top: 1.5rem;
+    }
+    .footer-sprocket {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      opacity: 0.12;
+      color: var(--sand);
+      pointer-events: none;
+      animation: frSprocket 28s linear infinite;
+    }
+    .footer-sprocket--left {
+      left: -1.5rem;
+      top: 1rem;
+    }
+    .footer-sprocket--right {
+      right: -1rem;
+      bottom: 4rem;
+      width: 90px;
+      height: 90px;
+      animation-duration: 22s;
+      animation-direction: reverse;
+      opacity: 0.1;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1.1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .site-footer .logo { color: var(--cream); margin-bottom: 0.9rem; }
+    .site-footer .logo-mark::after { background: var(--forest-deep); }
+    .footer-brand-note {
+      max-width: 32ch;
+      margin-bottom: 1rem;
+    }
+    .footer-contact {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .footer-contact a {
+      display: inline;
+      padding: 0;
+      color: var(--cream);
+    }
+    .footer-contact a:hover { color: var(--orange); }
+    .footer-grid h4 {
+      color: var(--sand);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .footer-grid h4::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--orange);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 3px rgba(228,119,55,0.15);
+      flex: 0 0 auto;
+    }
+    .footer-grid a {
+      display: block;
+      padding: 0.28rem 0;
+      transition: color 0.25s, transform 0.25s;
+    }
+    .footer-grid a:hover {
+      color: var(--orange);
+      transform: translateX(3px);
+    }
+    .footer-socials {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem 1.1rem;
+    }
+    .footer-socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0;
+    }
+    .footer-socials a svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+    .newsletter {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    .newsletter input {
+      flex: 1;
+      background: rgba(245,241,232,0.08);
+      border: 1px solid rgba(245,241,232,0.18);
+      color: var(--cream);
+      padding: 0.75rem 0.85rem;
+      border-radius: var(--radius-sm);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,241,232,0.12);
+      padding-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-bottom-route {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1px;
+      height: 2px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .footer-bottom-route span {
+      display: block;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      animation: frBottomSweep 4.5s ease-in-out infinite;
+    }
+    @keyframes frBottomSweep {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(320%); }
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-sprocket { display: none; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-ride { height: 6.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .footer-ride .fr-route-live,
+      .footer-ride .fr-wheel-spin,
+      .footer-sprocket,
+      .footer-bottom-route span {
+        animation: none !important;
+      }
+      .footer-ride .fr-bike { display: none; }
+    }

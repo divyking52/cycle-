@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.env
+.env.*
+!.env.example
+.vercel
+node_modules/
+.idea/
+.vscode/
+*.tmp
+*.swp

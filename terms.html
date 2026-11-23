@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms — Wildspoke</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Unbounded:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--forest:#173D30;--forest-deep:#0F2920;--orange:#E47737;--cream:#F5F1E8;--muted:rgba(36,41,35,.62);--line:rgba(23,61,48,.14);--font-display:"Unbounded",sans-serif;--font-body:"DM Sans",sans-serif;--nav-h:78px;--max:800px}
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);background:var(--cream);color:#242923;line-height:1.7}a{color:var(--orange)}
+    .site-header{position:fixed;inset:0 0 auto;height:var(--nav-h);background:rgba(245,241,232,.95);border-bottom:1px solid var(--line);z-index:10}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;height:100%;width:min(100% - 2.5rem,1100px);margin:auto}.logo{font-family:var(--font-display);font-weight:700;color:var(--forest);text-decoration:none}
+    .nav-links{display:flex;gap:1rem;font-size:.9rem}.nav-links a{text-decoration:none;color:#242923}
+    .nav-toggle{display:none;border:0;background:transparent;width:40px;height:40px;position:relative}.nav-toggle span{position:absolute;left:8px;right:8px;height:2px;background:var(--forest)}.nav-toggle span:nth-child(1){top:12px}.nav-toggle span:nth-child(2){top:19px}.nav-toggle span:nth-child(3){top:26px}
+    @media(max-width:900px){.nav-toggle{display:block}.nav-links{position:fixed;inset:var(--nav-h) 0 auto;flex-direction:column;background:var(--cream);padding:1rem;transform:translateY(-120%);transition:.35s}.nav-links.open{transform:none}}
+    main{width:min(100% - 2.5rem,var(--max));margin:calc(var(--nav-h) + 2.5rem) auto 4rem}
+    h1{font-family:var(--font-display);color:var(--forest);font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1rem}
+    h2{font-family:var(--font-display);font-size:1.05rem;margin:2rem 0 .6rem;color:var(--forest)}
+    p,li{color:var(--muted);margin-bottom:.8rem}ul{padding-left:1.2rem}
+    .placeholder{background:#EDE6D8;border:1px dashed rgba(23,61,48,.25);padding:1rem;border-radius:6px;font-size:.9rem;margin:1.5rem 0}
+    .site-footer{background:var(--forest-deep);color:rgba(245,241,232,.75);padding:2rem 0;text-align:center;font-size:.85rem}.site-footer a{color:rgba(245,241,232,.85)}
+  </style>
+<link rel="stylesheet" href="assets/site-footer.css" />
+</head>
+<body>
+  <header class="site-header"><div class="nav-inner"><a class="logo" href="index.html">Wildspoke</a><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button><nav class="nav-links" id="navLinks"><a href="tours.html">Tours</a><a href="contact.html">Contact</a><a href="index.html">Home</a></nav></div></header>
+  <main>
+    <h1>Terms of Service</h1>
+    <p>Last updated: placeholder — replace before accepting bookings online.</p>
+    <div class="placeholder"><strong>Placeholder notice:</strong> Have qualified counsel draft binding terms for deposits, cancellations, liability and travel insurance requirements.</div>
+    <h2>Bookings</h2>
+    <p>Tour confirmations, deposits and balance due dates will be defined in your official booking conditions. Website forms are enquiries only until connected to your booking system.</p>
+    <h2>Cancellations &amp; refunds</h2>
+    <p>Do not publish invented refund percentages. Link to or paste the policy your operations team approves for each departure type.</p>
+    <h2>Fitness &amp; participation</h2>
+    <p>Riders are responsible for disclosing health conditions and matching themselves to published difficulty ratings. Guides may adjust routes for safety.</p>
+    <h2>Liability</h2>
+    <p>Placeholder for limitation of liability, assumption of risk and insurance requirements for cycling travel.</p>
+    <h2>Governing law</h2>
+    <p>Specify jurisdiction and dispute resolution once legal counsel advises.</p>
+    <h2>Contact</h2>
+    <p><a href="contact.html">Contact Wildspoke</a> for contractual questions.</p>
+  </main>
+  <!-- 14. FOOTER — cycle theme + moving SVG -->
+  <footer class="site-footer topo" aria-label="Site footer">
+    <div class="footer-ride" aria-hidden="true">
+      <svg viewBox="0 0 1200 140" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="frSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#173D30" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#0F2920" stop-opacity="0.55"/>
+          </linearGradient>
+          <filter id="frBikeGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2.2" flood-color="#E47737" flood-opacity="0.75"/>
+          </filter>
+          <path id="frRidePath" d="M-40 98 C80 98, 120 62, 210 70 S360 118, 470 86 S620 40, 740 68 S900 112, 1020 78 S1120 52, 1240 70"/>
+        </defs>
+        <rect class="fr-sky" width="1200" height="140"/>
+        <path class="fr-hill-back" d="M0 140 V78 C90 58, 160 92, 250 70 S400 40, 520 66 S680 110, 820 72 S980 36, 1200 58 V140 Z"/>
+        <path class="fr-hill-front" d="M0 140 V102 C70 88, 140 118, 230 100 S390 70, 510 96 S680 130, 820 104 S980 78, 1200 92 V140 Z"/>
+        <use href="#frRidePath" class="fr-route"/>
+        <use href="#frRidePath" class="fr-route-live"/>
+        <text class="fr-mile" x="36" y="132">Basecamp</text>
+        <text class="fr-mile" x="560" y="132">Col</text>
+        <text class="fr-mile" x="1080" y="132">Finish</text>
+        <g class="fr-bike" filter="url(#frBikeGlow)">
+          <g transform="translate(-32 -34) scale(1.05)">
+            <g class="fr-wheel-spin">
+              <circle class="bike-stroke" cx="14" cy="28" r="9"/>
+              <circle class="bike-hub" cx="14" cy="28" r="2.2"/>
+              <path class="bike-stroke" d="M14 19 V37 M5 28 H23" opacity="0.6"/>
+            </g>
+            <g class="fr-wheel-spin">
+              <circle class="bike-stroke" cx="50" cy="28" r="9"/>
+              <circle class="bike-hub" cx="50" cy="28" r="2.2"/>
+              <path class="bike-stroke" d="M50 19 V37 M41 28 H59" opacity="0.6"/>
+            </g>
+            <path class="bike-frame" d="M14 28 L27 13 H41 L50 28 M27 13 L22 28 M27 13 L36 28"/>
+            <path class="bike-stroke" d="M23 11 H33"/>
+            <path class="bike-frame" d="M41 13 L46 8 M44 8 H52"/>
+            <path class="bike-stroke" d="M36 28 L30 22"/>
+          </g>
+          <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#frRidePath"/>
+          </animateMotion>
+        </g>
+      </svg>
+    </div>
+
+    <div class="container footer-body">
+      <svg class="footer-sprocket footer-sprocket--left" viewBox="0 0 80 80" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="40" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+        <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M40 8 V18 M40 62 V72 M8 40 H18 M62 40 H72"/>
+          <path d="M17 17 L24 24 M56 56 L63 63 M63 17 L56 24 M24 56 L17 63"/>
+        </g>
+      </svg>
+      <svg class="footer-sprocket footer-sprocket--right" viewBox="0 0 80 80" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="40" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+        <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M40 8 V18 M40 62 V72 M8 40 H18 M62 40 H72"/>
+          <path d="M17 17 L24 24 M56 56 L63 63 M63 17 L56 24 M24 56 L17 63"/>
+        </g>
+      </svg>
+
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true"></span> Wildspoke</a>
+          <p class="footer-brand-note">Premium guided cycling adventures through mountains, forests, coasts and quiet countryside roads.</p>
+          <p class="footer-contact">
+            <a href="mailto:hello@wildspoke.example">hello@wildspoke.example</a><br />
+            <a href="tel:+10000000000">+1 (000) 000-0000</a><br />
+            <span style="opacity:0.75">Office address — add when supplied</span>
+          </p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <a href="tours.html">Tours &amp; Packages</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="journal.html">Adventure Journal</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div>
+          <h4>Tours</h4>
+          <a href="tour-alpine.html">Alpine Mountain Escape</a>
+          <a href="tour-coastal.html">Coastal Road Adventure</a>
+          <a href="tour-forest.html">Wild Forest Trail</a>
+          <a href="tour-gravel.html">Countryside Gravel Escape</a>
+          <a href="contact.html">Book Your Adventure</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Route notes, seasonal windows and journal stories — no spam.</p>
+          <form class="newsletter" id="newsletterForm">
+            <label class="sr-only" for="newsEmail">Email</label>
+            <input id="newsEmail" type="email" placeholder="Email address" required />
+            <button class="btn btn-primary" type="submit">Join</button>
+          </form>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              Instagram
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></svg>
+              YouTube
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.5l.5-3H13v-1.5c0-.3.2-.5.5-.5Z" fill="currentColor"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-route" aria-hidden="true"><span></span></div>
+        <span>© <span id="year"></span> Wildspoke Adventures. All rights reserved.</span>
+        <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a></span>
+      </div>
+    </div>
+  </footer>
+  <script>(function(){document.getElementById("navToggle").onclick=()=>document.getElementById("navLinks").classList.toggle("open");document.getElementById("year").textContent=new Date().getFullYear()})();</script>
+
+<script>
+(function(){
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+  const news = document.getElementById('newsletterForm');
+  if (news && !news.dataset.bound) {
+    news.dataset.bound = '1';
+    news.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thanks for joining the Wildspoke list. Hook this up to your newsletter provider when ready.');
+      news.reset();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

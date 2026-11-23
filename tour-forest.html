@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wild Forest Trail — Wildspoke Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--forest:#173D30;--forest-deep:#0F2920;--orange:#E47737;--cream:#F5F1E8;--sand:#D9C4A0;--sage:#899B81;--muted:rgba(36,41,35,.62);--line:rgba(23,61,48,.14);--font-display:"Unbounded",sans-serif;--font-body:"DM Sans",sans-serif;--nav-h:78px;--max:1240px}
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);background:var(--cream);color:#242923;line-height:1.6}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button,input,select,textarea{font:inherit}ul{list-style:none}
+    .container{width:min(100% - 2.5rem,var(--max));margin-inline:auto}h1,h2{font-family:var(--font-display);color:var(--forest)}
+    .site-header{position:fixed;inset:0 0 auto;z-index:99;height:var(--nav-h);background:rgba(245,241,232,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;height:100%;width:min(100% - 2.5rem,var(--max));margin-inline:auto}
+    .logo{font-family:var(--font-display);font-weight:700}.nav-links{display:flex;gap:1.1rem;align-items:center}.btn{padding:.85rem 1.25rem;border-radius:4px;font-weight:600;border:none;cursor:pointer;display:inline-flex}.btn-primary{background:#E47737;color:#fff}.btn-ghost{border:1px solid rgba(245,241,232,.35);color:var(--cream);background:transparent}
+    .nav-toggle{display:none;background:0;border:0;width:40px;height:40px;position:relative}.nav-toggle span{position:absolute;left:8px;right:8px;height:2px;background:var(--forest)}.nav-toggle span:nth-child(1){top:12px}.nav-toggle span:nth-child(2){top:19px}.nav-toggle span:nth-child(3){top:26px}
+    @media(max-width:960px){.nav-toggle{display:block}.nav-links{position:fixed;inset:var(--nav-h) 0 auto;background:var(--cream);flex-direction:column;padding:1rem;transform:translateY(-120%);transition:.35s}.nav-links.open{transform:none}}
+    .hero{min-height:82vh;padding:calc(var(--nav-h)+2rem) 0 2.5rem;position:relative;display:flex;align-items:flex-end;color:var(--cream)}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,rgba(15,41,32,.9),rgba(15,41,32,.35)),url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80") center/cover}
+    .hero-grid{position:relative;z-index:1;width:min(100% - 2.5rem,var(--max));margin-inline:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem}
+    .hero h1{font-size:clamp(2rem,4.8vw,3.6rem);color:var(--cream);margin:.5rem 0}.pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}.pill{border:1px solid rgba(255,255,255,.25);padding:.35rem .65rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+    .content{padding:4rem 0}.split{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem}.card{background:var(--forest);color:var(--cream);padding:1.5rem;border-radius:10px;position:sticky;top:calc(var(--nav-h)+1rem)}
+    .list-cols{columns:2;gap:1.5rem;margin:1rem 0 1.5rem}.list-cols li{margin-bottom:.5rem;font-size:.92rem}
+    .acc button{width:100%;text-align:left;padding:1rem 0;border:0;border-bottom:1px solid var(--line);background:none;font-family:var(--font-display);cursor:pointer;color:var(--forest)}.acc .body{display:none;padding:.8rem 0 1.2rem;color:var(--muted)}.acc .body.show{display:block}
+    @media(max-width:880px){.hero-grid,.split{grid-template-columns:1fr}.list-cols{columns:1}.card{position:static}}
+    .site-footer{background:var(--forest-deep);color:rgba(245,241,232,.75);padding:2.5rem 0 1.2rem;font-size:.9rem}.topo{background-image:url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 60c20-30 40-30 60 0' fill='none' stroke='%23899B81' stroke-opacity='0.18'/%3E%3C/svg%3E")}
+    .field{margin-bottom:.55rem}.field input,.field select{width:100%;padding:.65rem;border-radius:4px;border:1px solid rgba(245,241,232,.22);background:rgba(15,41,32,.4);color:var(--cream)}.form-note{font-size:.75rem;margin-top:.45rem}.form-note.ok{color:#b7d4a8}
+  </style>
+<link rel="stylesheet" href="assets/site-footer.css" />
+</head>
+<body>
+  <header class="site-header"><div class="nav-inner"><a class="logo" href="index.html">Wildspoke</a><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button><nav class="nav-links" id="navLinks"><a href="tours.html">Tours</a><a href="destinations.html">Destinations</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="journal.html">Journal</a><a href="contact.html">Contact</a><a class="btn btn-primary nav-cta" href="tours.html">Explore Tours</a></nav></div></header>
+  <section class="hero"><div class="hero-bg"></div><div class="hero-grid"><div><p style="text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--sage)">Deep Forests</p><h1>Wild Forest Trail</h1><p>Four days under canopy — mixed surface forest corridors, lodge evenings and the kind of quiet you only hear at bike speed.</p><div class="pill-row"><span class="pill">4 days</span><span class="pill">Moderate</span><span class="pill">~160 km</span></div><a class="btn btn-ghost" href="tours.html" style="margin-top:1.2rem">← Tours</a></div></div></section>
+  <section class="content"><div class="container split"><div><h2>Trail character</h2><p style="color:var(--muted);margin:.7rem 0">Expect packed earth, short technical sections and wide forest roads. Guides set pace groups; van always within radio range.</p><h2 style="margin-top:1.5rem">Inclusions</h2><ul class="list-cols"><li>MTB or hybrid hire</li><li>Forest lodge stays</li><li>Trail snacks</li><li>Safety &amp; repair kit</li><li>Guided navigation</li><li>Evening campfire briefings</li></ul><h2>Daily flow</h2><div class="acc" id="acc"><button type="button" data-d="0">Day 1 — Canopy entry</button><div class="body show" data-d="0">Lodge check-in, bike fit, 25 km intro loop.</div><button type="button" data-d="1">Day 2 — Ridge corridor</button><div class="body" data-d="1">42 km with optional hike-a-bike section.</div><button type="button" data-d="2">Day 3 — Lake edge</button><div class="body" data-d="2">Mixed gravel and forest road — picnic lunch.</div><button type="button" data-d="3">Day 4 — Dawn exit</button><div class="body" data-d="3">Short loop and transfer to trailhead station.</div></div></div><div class="card"><h3 style="color:var(--sand);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em">From</h3><p style="font-family:var(--font-display);font-size:2rem"><span contenteditable="true" class="price-edit" spellcheck="false">[EDIT PRICE]</span></p><p style="font-size:.85rem;margin:.6rem 0 1rem;opacity:.85">Per rider · edit price when ready.</p><form id="form"><div class="field"><input placeholder="Name" required name="name" /></div><div class="field"><input placeholder="Email" type="email" required name="email" /></div><div class="field"><input type="date" required name="date" /></div><button class="btn btn-primary" style="width:100%" type="submit">Request Tour</button><p class="form-note" id="note">We'll reply within a day.</p></form></div></div></section>
+  <!-- 14. FOOTER — cycle theme + moving SVG -->
+  <footer class="site-footer topo" aria-label="Site footer">
+    <div class="footer-ride" aria-hidden="true">
+      <svg viewBox="0 0 1200 140" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="frSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#173D30" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#0F2920" stop-opacity="0.55"/>
+          </linearGradient>
+          <filter id="frBikeGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2.2" flood-color="#E47737" flood-opacity="0.75"/>
+          </filter>
+          <path id="frRidePath" d="M-40 98 C80 98, 120 62, 210 70 S360 118, 470 86 S620 40, 740 68 S900 112, 1020 78 S1120 52, 1240 70"/>
+        </defs>
+        <rect class="fr-sky" width="1200" height="140"/>
+        <path class="fr-hill-back" d="M0 140 V78 C90 58, 160 92, 250 70 S400 40, 520 66 S680 110, 820 72 S980 36, 1200 58 V140 Z"/>
+        <path class="fr-hill-front" d="M0 140 V102 C70 88, 140 118, 230 100 S390 70, 510 96 S680 130, 820 104 S980 78, 1200 92 V140 Z"/>
+        <use href="#frRidePath" class="fr-route"/>
+        <use href="#frRidePath" class="fr-route-live"/>
+        <text class="fr-mile" x="36" y="132">Basecamp</text>
+        <text class="fr-mile" x="560" y="132">Col</text>
+        <text class="fr-mile" x="1080" y="132">Finish</text>
+        <g class="fr-bike" filter="url(#frBikeGlow)">
+          <g transform="translate(-32 -34) scale(1.05)">
+            <g class="fr-wheel-spin">
+              <circle class="bike-stroke" cx="14" cy="28" r="9"/>
+              <circle class="bike-hub" cx="14" cy="28" r="2.2"/>
+              <path class="bike-stroke" d="M14 19 V37 M5 28 H23" opacity="0.6"/>
+            </g>
+            <g class="fr-wheel-spin">
+              <circle class="bike-stroke" cx="50" cy="28" r="9"/>
+              <circle class="bike-hub" cx="50" cy="28" r="2.2"/>
+              <path class="bike-stroke" d="M50 19 V37 M41 28 H59" opacity="0.6"/>
+            </g>
+            <path class="bike-frame" d="M14 28 L27 13 H41 L50 28 M27 13 L22 28 M27 13 L36 28"/>
+            <path class="bike-stroke" d="M23 11 H33"/>
+            <path class="bike-frame" d="M41 13 L46 8 M44 8 H52"/>
+            <path class="bike-stroke" d="M36 28 L30 22"/>
+          </g>
+          <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#frRidePath"/>
+          </animateMotion>
+        </g>
+      </svg>
+    </div>
+
+    <div class="container footer-body">
+      <svg class="footer-sprocket footer-sprocket--left" viewBox="0 0 80 80" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="40" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+        <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M40 8 V18 M40 62 V72 M8 40 H18 M62 40 H72"/>
+          <path d="M17 17 L24 24 M56 56 L63 63 M63 17 L56 24 M24 56 L17 63"/>
+        </g>
+      </svg>
+      <svg class="footer-sprocket footer-sprocket--right" viewBox="0 0 80 80" aria-hidden="true">
+        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="40" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+        <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M40 8 V18 M40 62 V72 M8 40 H18 M62 40 H72"/>
+          <path d="M17 17 L24 24 M56 56 L63 63 M63 17 L56 24 M24 56 L17 63"/>
+        </g>
+      </svg>
+
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true"></span> Wildspoke</a>
+          <p class="footer-brand-note">Premium guided cycling adventures through mountains, forests, coasts and quiet countryside roads.</p>
+          <p class="footer-contact">
+            <a href="mailto:hello@wildspoke.example">hello@wildspoke.example</a><br />
+            <a href="tel:+10000000000">+1 (000) 000-0000</a><br />
+            <span style="opacity:0.75">Office address — add when supplied</span>
+          </p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <a href="tours.html">Tours &amp; Packages</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="journal.html">Adventure Journal</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div>
+          <h4>Tours</h4>
+          <a href="tour-alpine.html">Alpine Mountain Escape</a>
+          <a href="tour-coastal.html">Coastal Road Adventure</a>
+          <a href="tour-forest.html">Wild Forest Trail</a>
+          <a href="tour-gravel.html">Countryside Gravel Escape</a>
+          <a href="contact.html">Book Your Adventure</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Route notes, seasonal windows and journal stories — no spam.</p>
+          <form class="newsletter" id="newsletterForm">
+            <label class="sr-only" for="newsEmail">Email</label>
+            <input id="newsEmail" type="email" placeholder="Email address" required />
+            <button class="btn btn-primary" type="submit">Join</button>
+          </form>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              Instagram
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></svg>
+              YouTube
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.5l.5-3H13v-1.5c0-.3.2-.5.5-.5Z" fill="currentColor"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-route" aria-hidden="true"><span></span></div>
+        <span>© <span id="year"></span> Wildspoke Adventures. All rights reserved.</span>
+        <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a></span>
+      </div>
+    </div>
+  </footer>
+  <script>(function(){document.getElementById("navToggle").onclick=()=>document.getElementById("navLinks").classList.toggle("open");document.getElementById("year").textContent=new Date().getFullYear();const acc=document.getElementById("acc");acc.querySelectorAll("button").forEach(btn=>btn.onclick=()=>{acc.querySelectorAll(".body").forEach(b=>b.classList.remove("show"));acc.querySelector(`.body[data-d="${btn.dataset.d}"]`).classList.add("show")});document.getElementById("form").onsubmit=e=>{e.preventDefault();document.getElementById("note").textContent="Thanks — Wild Forest Trail enquiry saved locally.";document.getElementById("note").classList.add("ok");e.target.reset()}})();</script>
+
+<script>
+(function(){
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+  const news = document.getElementById('newsletterForm');
+  if (news && !news.dataset.bound) {
+    news.dataset.bound = '1';
+    news.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thanks for joining the Wildspoke list. Hook this up to your newsletter provider when ready.');
+      news.reset();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
