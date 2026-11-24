@@ -633,8 +633,12 @@
         min-height: 100svh;
         min-height: 100dvh;
       }
-      #heroVideo { opacity: 0.5; }
-      .hero-fallback { opacity: 1; }
+      #heroVideo {
+        opacity: 1;
+        display: block;
+      }
+      .hero-fallback { opacity: 0; }
+      .hero-fallback.show { opacity: 1; }
       .hero-vignette {
         background:
           linear-gradient(180deg, rgba(15,41,32,0.5) 0%, transparent 30%, transparent 52%, rgba(15,41,32,0.82) 100%),
@@ -867,9 +871,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: var(--rides-pos, 50% 42%);
       opacity: 0;
       transform: scale(1.08);
-      filter: saturate(0.92) contrast(1.05);
+      filter: saturate(0.98) contrast(1.06) brightness(1.02);
       transition: opacity 0.7s var(--ease), transform 1.4s var(--ease);
     }
     .rides-media img.is-active {
@@ -1072,14 +1077,60 @@
         min-height: 0;
         overflow: visible;
       }
-      .rides-stage { min-height: 100vh; height: auto; }
+      .rides-stage {
+        min-height: 100svh;
+        min-height: 100dvh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background: #0c1f18;
+      }
+      .rides-media {
+        position: relative;
+        inset: auto;
+        flex: 0 0 auto;
+        width: 100%;
+        height: clamp(19rem, 56svh, 28rem);
+        z-index: 0;
+        overflow: hidden;
+        background: #14261e;
+      }
+      .rides-media img {
+        object-position: var(--rides-pos-m, var(--rides-pos, 50% 42%));
+        filter: saturate(1.1) contrast(1.12) brightness(1.05);
+      }
+      .rides-veil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: clamp(19rem, 56svh, 28rem);
+        bottom: auto;
+        z-index: 1;
+        background:
+          linear-gradient(180deg, rgba(12, 31, 24, 0.55) 0%, rgba(12, 31, 24, 0.08) 22%, rgba(12, 31, 24, 0.02) 48%, rgba(12, 31, 24, 0.62) 100%);
+      }
       .rides-board {
-        grid-template-columns: 1fr;
-        padding: calc(var(--nav-h) + 0.85rem) var(--gutter) 10.5rem;
-        align-items: start;
-        gap: 1.15rem;
+        position: relative;
+        z-index: 2;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0.95rem;
+        min-height: 0;
+        margin-top: -3.25rem;
+        padding:
+          0
+          var(--gutter)
+          calc(8.1rem + env(safe-area-inset-bottom, 0px));
+        background:
+          linear-gradient(180deg, transparent 0, rgba(12, 31, 24, 0.94) 2.4rem, #0c1f18 3.8rem);
       }
       .rides-roster {
+        flex: 0 0 auto;
         flex-direction: row;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -1088,63 +1139,92 @@
         scrollbar-width: none;
         border-left: 0;
         border-bottom: 1px solid rgba(245,241,232,0.16);
-        padding: 0 0 0.9rem;
+        padding: 0.15rem 0 0.75rem;
         gap: 0.4rem;
         align-self: stretch;
-        margin-inline: calc(var(--gutter) * -0.15);
-        padding-inline: 0.1rem;
       }
       .rides-roster::-webkit-scrollbar { display: none; }
       .rides-roster-btn {
         flex: 0 0 auto;
         grid-template-columns: auto;
-        min-height: 2.55rem;
-        padding: 0.55rem 0.85rem;
+        min-height: 2.45rem;
+        padding: 0.5rem 0.8rem;
         border: 1px solid rgba(245,241,232,0.16);
+        backdrop-filter: blur(8px);
+        background: rgba(12, 31, 24, 0.45);
       }
       .rides-roster-btn span,
       .rides-roster-btn .rides-num { display: none; }
       .rides-roster-btn[aria-selected="true"] {
         border-color: var(--orange);
-        background: rgba(228,119,55,0.16);
+        background: rgba(228,119,55,0.22);
+        color: var(--cream);
       }
-      .rides-brief { padding-bottom: 0.15rem; }
-      .rides-brief-top { margin-bottom: 0.65rem; gap: 0.55rem 0.9rem; }
+      .rides-brief {
+        flex: 0 0 auto;
+        margin-top: 0;
+        padding: 0 0 0.2rem;
+        max-width: none;
+      }
+      .rides-brief-top {
+        margin-bottom: 0.45rem;
+        gap: 0.45rem 0.75rem;
+      }
+      .rides-diff {
+        margin-bottom: 0.55rem;
+        padding: 0.32rem 0.55rem;
+        font-size: 0.62rem;
+      }
       .rides-brief h2 {
-        font-size: clamp(1.95rem, 9vw, 2.7rem);
-        margin-bottom: 0.6rem;
+        font-size: clamp(1.85rem, 8.5vw, 2.35rem);
+        margin-bottom: 0.45rem;
+        max-width: 12ch;
+        line-height: 0.98;
       }
       .rides-brief > p {
-        font-size: 0.95rem;
-        margin-bottom: 1.1rem;
-        max-width: 34ch;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.95rem;
+        max-width: 32ch;
       }
-      .rides-brief .btn { width: 100%; justify-content: center; }
+      .rides-brief .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 2.7rem;
+      }
       .rides-elev {
-        height: 9.25rem;
+        height: 7.75rem;
+        padding: 0 var(--gutter) calc(0.75rem + env(safe-area-inset-bottom, 0px));
         pointer-events: auto;
         touch-action: none;
         cursor: grab;
         -webkit-user-select: none;
         user-select: none;
+        background: linear-gradient(180deg, transparent, rgba(12, 31, 24, 0.55) 35%);
       }
       .rides-elev.is-dragging { cursor: grabbing; }
-      .rides-elev-inner {
-        padding-top: 1rem;
-      }
-      .rides-elev svg { height: calc(100% - 1.75rem); }
+      .rides-elev-inner { padding-top: 0.7rem; }
+      .rides-elev svg { height: calc(100% - 1.45rem); }
       .rides-rider {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         pointer-events: none;
       }
       .rides-rider::after {
         content: "";
         position: absolute;
-        inset: -18px;
+        inset: -16px;
         border-radius: 50%;
       }
-      .rides-elev-meta { pointer-events: none; }
+      .rides-elev-meta {
+        pointer-events: none;
+        font-size: 0.58rem;
+        margin-top: 0.2rem;
+      }
+    }
+    @media (max-width: 560px) {
+      .rides-brief h2 { font-size: clamp(1.7rem, 9vw, 2.1rem); }
+      .rides-elev { height: 7.25rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       .rides-pin { height: auto; }
@@ -1780,7 +1860,7 @@
     }
     .dest-pin {
       position: relative;
-      height: 240vh;
+      height: 220vh;
     }
     .dest-sticky {
       position: sticky;
@@ -1788,22 +1868,27 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: calc(var(--nav-h) + 1.2rem) 0 1.5rem;
+      justify-content: flex-start;
+      padding: calc(var(--nav-h) + 1rem) 0 1.35rem;
       box-sizing: border-box;
     }
     .dest-sticky .section-head {
-      margin-bottom: clamp(1.1rem, 2.5vw, 1.8rem);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+      flex: 0 0 auto;
     }
     .dest-layout {
       --dest-active: alps;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      min-height: clamp(32rem, 68vh, 40rem);
+      flex: 1 1 auto;
+      min-height: clamp(28rem, 62vh, 38rem);
+      max-height: calc(100vh - var(--nav-h) - 7.5rem);
       border: 1px solid var(--line);
       background: var(--cream);
       position: relative;
       isolation: isolate;
+      opacity: 1;
+      transform: none;
     }
     .dest-cartograph {
       position: relative;
@@ -2215,13 +2300,16 @@
         position: relative;
         min-height: 0;
         padding: var(--section-y) 0;
+        justify-content: flex-start;
       }
       .dest-sticky .section-head { margin-bottom: 1.1rem; }
       .dest-layout {
         display: flex;
         flex-direction: column;
         grid-template-columns: none;
+        flex: none;
         min-height: 0;
+        max-height: none;
       }
       .dest-cartograph {
         border-right: 0;
@@ -3740,6 +3828,7 @@
         autoplay
         loop
         playsinline
+        webkit-playsinline
         preload="auto"
         poster="assets/hero-poster.jpg?v=ride4"
         aria-hidden="true"
@@ -3809,12 +3898,12 @@
       <div class="rides-sticky">
         <div class="rides-stage" id="ridesStage">
           <div class="rides-media" id="ridesMedia" aria-hidden="true">
-            <img class="is-active" data-ride="0" src="https://images.pexels.com/photos/71104/utah-mountain-biking-bike-biking-71104.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Mountain biking on a desert ridge" />
-            <img data-ride="1" loading="lazy" src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1800&q=80" alt="Road cycling along the coast" />
-            <img data-ride="2" loading="lazy" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=1800&q=80" alt="Gravel bike on open roads" />
-            <img data-ride="3" loading="lazy" src="https://images.unsplash.com/photo-1571188654248-7a89213915f7?auto=format&fit=crop&w=1800&q=80" alt="E-bike assisted trail riding" />
-            <img data-ride="4" loading="lazy" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80" alt="Easy countryside lanes" />
-            <img data-ride="5" loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80" alt="Multi-day mountain expedition" />
+            <img class="is-active" data-ride="0" style="--rides-pos: 34% 46%; --rides-pos-m: 30% 48%;" src="https://images.pexels.com/photos/71104/utah-mountain-biking-bike-biking-71104.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Mountain biking on a desert ridge" />
+            <img data-ride="1" loading="lazy" style="--rides-pos: 55% 40%; --rides-pos-m: 52% 55%;" src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1800&q=80" alt="Road cycling along the coast" />
+            <img data-ride="2" loading="lazy" style="--rides-pos: 48% 40%; --rides-pos-m: 46% 42%;" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=1800&q=80" alt="Gravel bike on open roads" />
+            <img data-ride="3" loading="lazy" style="--rides-pos: 50% 44%; --rides-pos-m: 52% 40%;" src="https://images.unsplash.com/photo-1571188654248-7a89213915f7?auto=format&fit=crop&w=1800&q=80" alt="E-bike assisted trail riding" />
+            <img data-ride="4" loading="lazy" style="--rides-pos: 50% 55%; --rides-pos-m: 48% 50%;" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80" alt="Easy countryside lanes" />
+            <img data-ride="5" loading="lazy" style="--rides-pos: 50% 38%; --rides-pos-m: 50% 36%;" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80" alt="Multi-day mountain expedition" />
           </div>
           <div class="rides-veil" aria-hidden="true"></div>
 
@@ -4047,7 +4136,7 @@
             <a class="btn btn-outline magnetic reveal" href="destinations.html">All Destinations</a>
           </div>
 
-          <div class="dest-layout reveal" id="destLayout">
+          <div class="dest-layout" id="destLayout">
             <div class="dest-cartograph">
               <div class="dest-cartograph-label">
                 <span>Track cinema</span>
@@ -6491,40 +6580,69 @@
 
         const onScroll = () => updateCamera(exitProgress());
 
-        const start = () => {
-          heroFallback?.classList.remove("show");
+        const armPlaybackFlags = () => {
           heroVideo.muted = true;
           heroVideo.defaultMuted = true;
+          heroVideo.volume = 0;
           heroVideo.loop = true;
           heroVideo.autoplay = true;
           heroVideo.playbackRate = 0.9;
+          heroVideo.setAttribute("muted", "");
           heroVideo.setAttribute("playsinline", "");
           heroVideo.setAttribute("webkit-playsinline", "");
           heroVideo.playsInline = true;
+        };
+
+        const tryPlay = () => {
+          armPlaybackFlags();
+          const play = heroVideo.play();
+          if (play && typeof play.then === "function") {
+            return play
+              .then(() => {
+                heroFallback?.classList.remove("show");
+              })
+              .catch(() => {
+                heroFallback?.classList.add("show");
+              });
+          }
+          if (!heroVideo.paused) heroFallback?.classList.remove("show");
+          return Promise.resolve();
+        };
+
+        const unlockOnGesture = () => {
+          if (!heroVideo.paused) return;
+          tryPlay();
+        };
+
+        const start = () => {
           if (heroLiveTag) {
             heroLiveTag.classList.remove("is-scrubbing");
             const label = heroLiveTag.querySelector("span");
             if (label) label.textContent = "Live route film";
           }
-          const play = heroVideo.play();
-          if (play && typeof play.catch === "function") {
-            play.catch(() => heroFallback?.classList.add("show"));
-          }
+          tryPlay();
           measurePath();
           syncFromFilm();
           onScroll();
         };
 
         heroVideo.addEventListener("loadeddata", start, { once: true });
+        heroVideo.addEventListener("canplay", () => { if (heroVideo.paused) tryPlay(); }, { once: true });
         heroVideo.addEventListener("playing", () => heroFallback?.classList.remove("show"));
         heroVideo.addEventListener("timeupdate", syncFromFilm);
         heroVideo.addEventListener("error", () => heroFallback?.classList.add("show"));
+        document.addEventListener("touchstart", unlockOnGesture, { passive: true, once: true });
+        document.addEventListener("click", unlockOnGesture, { once: true });
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible" && heroVideo.paused) tryPlay();
+        });
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", () => { measurePath(); syncFromFilm(); onScroll(); }, { passive: true });
 
         measurePath();
         updateElevation(0);
         updateCamera(0);
+        armPlaybackFlags();
         if (heroVideo.readyState >= 2) start();
         else heroVideo.load();
       }
